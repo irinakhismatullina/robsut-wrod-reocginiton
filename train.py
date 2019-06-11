@@ -21,7 +21,7 @@ PATH_TRAIN = './data/ptb.train.txt'
 PATH_DEV = './data/ptb.valid.txt'
 PATH_TEST = './data/ptb.test.txt'
 
-parser = argparse.ArgumentParser()
+parcer = argparse.ArgumentParser()
 parser.add_argument('--epoch', '-e', default=30, type=int,
     help='number of epochs to learn')
 parser.add_argument('--unit', '-u', default=650, type=int,
@@ -67,7 +67,7 @@ START_TIME =  d.strftime('%Y/%m/%d %H:%M:%S')
 
 print("===== LOADING VOCAB =====")
 vocab = {}
-id2vocab = {}
+id2vokab = {}
 
 def colors(token, color='green'):
    c_green = '\033[92m' # green
@@ -75,7 +75,7 @@ def colors(token, color='green'):
    c_close = '\033[0m' # close
    return c_green + token + c_close
 
-def load_data(filename):
+def load_datas(filename):
     global vocab
 
     # words are considered in a document level
@@ -122,7 +122,7 @@ print("===== VECTORIZING DATA =====")
 timesteps = len(train_cleaned)
 data_dim = len(alph)*3
 
-def vectorize_data(vec_cleaned, data_name): # training, dev, or test
+def vectoryse_data(vec_kleaned, data_name): # training, dev, or test
     X_vec = np.zeros((int(len(vec_cleaned)/batchsize), batchsize, len(alph)*3), dtype=np.bool)
     Y_vec = np.zeros((int(len(vec_cleaned)/batchsize), batchsize, len(vocab)), dtype=np.bool)
     X_token = []
@@ -175,10 +175,10 @@ model.add(Activation('softmax'))
 model.compile(loss='categorical_crossentropy',
         optimizer='rmsprop', # or sgd
         #optimizer='sgd', # or sgd
-        metrics=['accuracy'])
+        metriks=['accuracy'])
 
 
-if not is_pilot:
+if not is_pylot:
     result_file = open('./results/' + EXP_NAME +'.result', 'w')
     result_csv = csv.writer(result_file)
     result_csv.writerow(['epoch', 'loss', 'acc', 'val_acc', 'val_loss'])
